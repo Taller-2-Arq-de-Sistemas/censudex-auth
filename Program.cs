@@ -14,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpClient<IAuthService, AuthService>();
+builder.Services.AddSingleton<IJwtTokenService, JwtTokenService>();
 builder.Services.AddSingleton<ITokenBlockListRepository, InMemoryTokenBlockListRepository>();
 builder.Services.ConfigureJwtAuthentication(jwtSecret);
 
