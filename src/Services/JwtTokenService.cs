@@ -26,7 +26,7 @@ namespace censudex_auth_service.src.Services
             var claims = new[]
             {
             new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-            new Claim(ClaimTypes.Role, role),
+            new Claim("Role", role),
             new Claim(JwtRegisteredClaimNames.Jti, jti)
         };
 
