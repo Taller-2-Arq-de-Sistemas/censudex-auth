@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "674487ed-cc18-40de-9588-6ab574582ee1",
+		"name": "censudex-auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34959447",
+		"_collection_link": "https://taller2censudex.postman.co/workspace/Censudex~1f3f6e1b-c0b1-41c2-9bac-6d04b410bfce/collection/34959447-674487ed-cc18-40de-9588-6ab574582ee1?action=share&source=collection_link&creator=34959447"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Validate token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjExMTExMTExLTExMTEtMTExMS0xMTExLTExMTExMTExMTExMSIsIlJvbGUiOiIxIiwianRpIjoiYTRmOGMxZTUtYTMzMS00ODUxLWJmNTItYTYzNGViYmY2ZDAyIiwiZXhwIjoxNzYyMDY1NjI4fQ.CTJmRm6drwgIu_AquKP2FNpbmbLBj3mqs0TJwYVJiuk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{auth_baseurl}}/auth/validate-token",
+							"host": [
+								"{{auth_baseurl}}"
+							],
+							"path": [
+								"auth",
+								"validate-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Log in",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"identifier\": \"admin@censudex.cl\",\r\n  \"password\": \"Password1234!\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{auth_baseurl}}/auth/login",
+							"host": [
+								"{{auth_baseurl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Log out",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjExMTExMTExLTExMTEtMTExMS0xMTExLTExMTExMTExMTExMSIsIlJvbGUiOiIxIiwianRpIjoiYTRmOGMxZTUtYTMzMS00ODUxLWJmNTItYTYzNGViYmY2ZDAyIiwiZXhwIjoxNzYyMDY1NjI4fQ.CTJmRm6drwgIu_AquKP2FNpbmbLBj3mqs0TJwYVJiuk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{auth_baseurl}}/auth/logout",
+							"host": [
+								"{{auth_baseurl}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
