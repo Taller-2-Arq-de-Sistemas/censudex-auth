@@ -4,11 +4,13 @@ using censudex_auth_service.src.Dtos.Request;
 using censudex_auth_service.src.Dtos.Response;
 using censudex_auth_service.src.Repositories;
 using censudex_auth_service.src.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace censudex_auth_service.src.Controllers
 {
+    /// <summary>
+    /// Provides authentication endpoints for the Censudex system.
+    /// </summary>
     [ApiController]
     [Route("auth")]
     public class AuthController : ControllerBase
@@ -16,13 +18,22 @@ namespace censudex_auth_service.src.Controllers
         private readonly IAuthService _authService;
         private readonly ITokenBlockListRepository _tokenBlockListRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the AuthController class.
+        /// </summary>
+        /// <param name="authService">The authentication service.</param>
+        /// <param name="tokenBlockListRepository">The token block list repository.</param>
         public AuthController(IAuthService authService, ITokenBlockListRepository tokenBlockListRepository)
         {
             _authService = authService;
             _tokenBlockListRepository = tokenBlockListRepository;
         }
 
-        /// POST /auth/login
+        /// <summary>
+        /// Authenticates a user and returns a JWT token.
+        /// </summary>
+        /// <param name="request">The login request containing user credentials.</param>
+        /// <returns>A JWT token if authentication is successful.</returns>
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
@@ -37,7 +48,10 @@ namespace censudex_auth_service.src.Controllers
             return Ok(loginResult);
         }
 
-        /// GET /auth/validate-token
+        /// <summary>
+        /// Validates a JWT token and returns user information.
+        /// </summary>
+        /// <returns>User information if the token is valid.</returns>
         [HttpGet("validate-token")]
         public async Task<IActionResult> ValidateTokenAsync()
         {
@@ -59,7 +73,10 @@ namespace censudex_auth_service.src.Controllers
             });
         }
 
-        /// POST /auth/logout
+        /// <summary>
+        /// Logs out the current user by blocking their JWT token.
+        /// </summary>
+        /// <returns>A confirmation message.</returns>
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
@@ -76,6 +93,5 @@ namespace censudex_auth_service.src.Controllers
 
             return Ok("Sesión cerrada con éxito.");
         }
-
     }
 }
