@@ -6,12 +6,21 @@ using censudex_auth_service.src.Dtos.Response;
 
 namespace censudex_auth_service.src.Services
 {
+    /// <summary>
+    /// Provides authentication services for the Censudex system.
+    /// </summary>
     public class AuthService : IAuthService
     {
         private readonly HttpClient _httpClient;
         private readonly IJwtTokenService _jwtService;
         private readonly string _clientsBaseUrl;
 
+        /// <summary>
+        /// Initializes a new instance of the AuthService class.
+        /// </summary>
+        /// <param name="httpClient">The HTTP client for making requests to external services.</param>
+        /// <param name="jwtService">The JWT token service for generating authentication tokens.</param>
+        /// <param name="config">The configuration containing service URLs and settings.</param>
         public AuthService(HttpClient httpClient, IJwtTokenService jwtService, IConfiguration config)
         {
             _httpClient = httpClient;
@@ -19,6 +28,11 @@ namespace censudex_auth_service.src.Services
             _clientsBaseUrl = config["CLIENTS_SERVICE_URL"] ?? throw new InvalidOperationException("CLIENTS_SERVICE_URL environment variable is not set");
         }
 
+        /// <summary>
+        /// Authenticates a user using their credentials and returns a JWT token if successful.
+        /// </summary>
+        /// <param name="request">The login request containing user credentials.</param>
+        /// <returns>A LoginResult indicating authentication success or failure.</returns>
         public async Task<LoginResult> AuthenticateAsync(LoginRequest request)
         {
             var url = $"{_clientsBaseUrl}/clients/credentials";

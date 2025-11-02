@@ -7,7 +7,6 @@ Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
 var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET") ?? throw new InvalidOperationException("JWT_SECRET environment variable is not set");
-var clientsUrl = Environment.GetEnvironmentVariable("CLIENTS_SERVICE_URL");
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
