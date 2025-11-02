@@ -6,6 +6,8 @@ Gestiona la **autenticación y validación de tokens JWT** de los usuarios (clie
 
 Implementado en **C# (.NET 9)**, sigue una arquitectura simple tipo *Clean-ish* (Controllers → Services → JWT / HTTP Clients) y comunica con el **Clients Service** vía Gateway.
 
+Por defecto este servicio funciona en el puerto 5002.
+
 ---
 
 ## Arquitectura y patrones
