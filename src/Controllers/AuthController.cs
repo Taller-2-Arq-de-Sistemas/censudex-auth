@@ -42,7 +42,7 @@ namespace censudex_auth_service.src.Controllers
         public async Task<IActionResult> ValidateTokenAsync()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+            var userRole = User.FindFirst("Role")?.Value;
             var jti = User.FindFirst("jti")?.Value;
 
             if (userId is null || jti is null)
