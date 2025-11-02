@@ -38,7 +38,6 @@ namespace censudex_auth_service.src.Controllers
         }
 
         /// GET /auth/validate-token
-        [Authorize]
         [HttpGet("validate-token")]
         public async Task<IActionResult> ValidateTokenAsync()
         {
@@ -49,7 +48,6 @@ namespace censudex_auth_service.src.Controllers
             if (userId is null || jti is null)
                 return Unauthorized("Token inválido.");
 
-            // 🧠 Check if token is blocked
             bool isBlocked = await _tokenBlockListRepository.IsTokenBlockedAsync(jti);
             if (isBlocked)
                 return Unauthorized("Token bloqueado o sesión cerrada.");
@@ -62,7 +60,6 @@ namespace censudex_auth_service.src.Controllers
         }
 
         /// POST /auth/logout
-        [Authorize]
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
