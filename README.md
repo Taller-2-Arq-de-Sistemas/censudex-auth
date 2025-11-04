@@ -48,6 +48,7 @@ Por defecto este servicio funciona en el puerto 5002.
 ---
 
 ## Levantamiento
+>**Este servicio no fue hecho para utilizarse individualmente, endpoints que necesitan datos de usuario (como /login) no funcionarán correctamente, para una guía de levantamiento completo consulta la [API Gateway](https://github.com/Taller-2-Arq-de-Sistemas/censudex-api-gateway/?tab=readme-ov-file#ejecución-del-proyecto).**
 
 > Asegúrate de que el API Gateway y el Clients Service estén en ejecución antes de iniciar Auth.
 
@@ -58,7 +59,7 @@ Por defecto este servicio funciona en el puerto 5002.
    cd censudex-auth
    ```
 
-2. **Copiar `.env.example`**
+2. **Copiar `.env.example` y agregar tus variables de entorno**
 
    ```bash
    cp .env.example .env
